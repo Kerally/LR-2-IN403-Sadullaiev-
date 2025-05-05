@@ -83,7 +83,6 @@ print(f"Розмір валідаційного набору X: {X_validation.sh
 # --- 4. Побудова та оцінка моделей за допомогою крос-валідації ---
 print("\n--- 4. Оцінка алгоритмів за допомогою крос-валідації ---")
 models = []
-# ВИПРАВЛЕНО: Прибрано multi_class='ovr'
 models.append(('LR', LogisticRegression(solver='liblinear')))
 models.append(('LDA', LinearDiscriminantAnalysis()))
 models.append(('KNN', KNeighborsClassifier()))
@@ -103,7 +102,6 @@ for name, model in models:
 
 # Діаграма розмаху для порівняння результатів крос-валідації
 plt.figure(figsize=(10, 6))
-# ВИПРАВЛЕНО: labels -> tick_labels
 plt.boxplot(results, tick_labels=names) # Використовуємо tick_labels
 plt.title('Порівняння точності алгоритмів (Cross-Validation)')
 plt.ylabel('Accuracy')
@@ -112,8 +110,6 @@ plt.show()
 
 # --- 5. Вибір моделі, фінальне навчання та оцінка на валідаційному наборі ---
 print("\n--- 5. Фінальна оцінка на валідаційному наборі ---")
-# На основі результатів крос-валідації (LDA та SVM були найкращими у вашому виводі)
-# Залишимо SVM, як було в оригінальному коді PDF для цього кроку
 print("Вибрана модель для фінальної оцінки: SVM")
 model = SVC(gamma='auto')
 model.fit(X_train, Y_train)

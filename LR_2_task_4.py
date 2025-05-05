@@ -20,13 +20,12 @@ warnings.filterwarnings('ignore', category=UserWarning)
 # --- Параметри ---
 input_file = 'income_data.txt'
 max_datapoints = 25000
-test_set_size = 0.2 # Не використовується прямо, але потрібен для розділення
-random_seed = 1 # Використаємо інший random_state для різноманіття
+test_set_size = 0.2
+random_seed = 1
 
 class_labels = ['<=50K', '>50K']
 
 # --- 1. Завантаження та попередня обробка даних ---
-# (Код ідентичний Завданню 2.2, без print)
 X_list = []
 y_list = []
 count_class0 = 0; count_class1 = 0
@@ -47,7 +46,6 @@ if not X_list: print("Помилка: Не вдалося завантажити
 X = np.array(X_list); y = np.array(y_list)
 
 # --- 2. Кодування категоріальних ознак ---
-# (Код ідентичний Завданню 2.2, без print)
 label_encoders = []
 num_cols = X.shape[1]
 X_encoded = np.empty(X.shape, dtype=int)
@@ -77,8 +75,6 @@ models.append(('LDA', LinearDiscriminantAnalysis()))
 models.append(('KNN', KNeighborsClassifier()))
 models.append(('CART', DecisionTreeClassifier()))
 models.append(('NB', GaussianNB()))
-# Для SVM візьмемо RBF ядро, яке було найкращим у завд. 2.2, але з 'auto' gamma
-# Або можна залишити просто SVC() з параметрами за замовчуванням (що часто є RBF)
 models.append(('SVM', SVC(gamma='auto')))
 
 results = []

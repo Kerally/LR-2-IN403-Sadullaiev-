@@ -21,9 +21,6 @@ class_names = iris.target_names # Отримуємо назви класів д�
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
 
 # --- 3. Створення та навчання моделі RidgeClassifier ---
-# Ініціалізація класифікатора з параметрами з PDF (виправлено tolle-2 -> tol=1e-2)
-# solver='sag' - Stochastic Average Gradient descent, підходить для великих даних
-# tol=1e-2 - Точність рішення (критерій зупинки)
 clf = RidgeClassifier(tol=1e-2, solver="sag")
 # Навчання моделі
 clf.fit(X_train, y_train)
@@ -65,7 +62,7 @@ plt.figure(figsize=(7, 6))
 sns.set() # Застосовуємо стиль seaborn
 sns.heatmap(mat, square=True, annot=True, fmt='d', cbar=True, cmap='Blues', # square=True, annot=True, fmt='d', cbar=True
             xticklabels=class_names, yticklabels=class_names)
-plt.xlabel('Передбачений клас') # Виправлено підписи осей для стандартного вигляду
+plt.xlabel('Передбачений клас')
 plt.ylabel('Істинний клас')
 plt.title('Матриця плутанини (Ridge Classifier)')
 
@@ -78,13 +75,5 @@ except Exception as e:
 
 # Показати графік
 plt.show()
-
-# Збереження SVG (як у PDF, опціонально)
-# try:
-#     f = BytesIO()
-#     plt.savefig(f, format="svg")
-#     print("Матрицю плутанини також збережено в SVG форматі (у змінній f).")
-# except Exception as e:
-#     print(f"Не вдалося зберегти SVG: {e}")
 
 print("\n--- Завдання 2.5 Завершено ---")

@@ -100,7 +100,7 @@ plt.title('Матриця плутанини (Linear SVM)')
 # plt.savefig("confusion_matrix_task1.png") # Розкоментуйте для збереження
 plt.show()
 
-# --- 7. Прогноз для прикладу (з PDF) ---
+# --- 7. Прогноз для прикладу ---
 input_data_example = ['37', 'Private', '215646', 'HS-grad', '9', 'Never-married', 'Handlers-cleaners', 'Not-in-family', 'White', 'Male', '0', '0', '40', 'United-States']
 
 print("\n--- Прогноз для тестової точки даних ---")

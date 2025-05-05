@@ -22,7 +22,6 @@ poly_degree = 8 # Степінь для поліноміального ядра
 class_labels = ['<=50K', '>50K'] # Назви класів
 
 # --- 1. Читання та попередня обробка даних ---
-# (Код ідентичний попереднім версіям, без print)
 X_list = []
 y_list = []
 count_class0 = 0
@@ -46,7 +45,6 @@ if not X_list: print("Помилка: Не вдалося завантажити
 X = np.array(X_list); y = np.array(y_list)
 
 # --- 2. Кодування категоріальних ознак ---
-# (Код ідентичний попереднім версіям, без print)
 label_encoders = []
 num_cols = X.shape[1]
 X_encoded = np.empty(X.shape, dtype=int)
@@ -64,7 +62,7 @@ X_train, X_test, y_train, y_test = train_test_split(
     X_final, y, test_size=test_set_size, random_state=random_seed, stratify=y
 )
 
-# --- 4. Масштабування даних (НОВИЙ КРОК) ---
+# --- 4. Масштабування даних ---
 scaler = StandardScaler()
 # Навчаємо scaler ТІЛЬКИ на тренувальних даних
 X_train_scaled = scaler.fit_transform(X_train)
@@ -104,7 +102,6 @@ def train_evaluate_svm(kernel_type, kernel_params, X_train_data, y_train_data, X
 # --- 5. Тестування різних ядер (на масштабованих даних) ---
 
 # 5.1 Поліноміальне ядро (degree=8)
-# УВАГА: Цей крок може бути ДУЖЕ довгим!
 poly_params = {'degree': poly_degree, 'gamma': 'auto'}
 train_evaluate_svm('poly', poly_params, X_train_scaled, y_train, X_test_scaled, y_test)
 
